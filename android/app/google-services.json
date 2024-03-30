@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "475296103621",
+    "project_id": "marsous-23edd",
+    "storage_bucket": "marsous-23edd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475296103621:android:edbe6793f4905942ec84ac",
+        "android_client_info": {
+          "package_name": "com.example.marsous"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1oZCmn3P0fvBQQE8YPhAD91J1CfQXqHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
