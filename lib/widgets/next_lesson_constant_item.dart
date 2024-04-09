@@ -88,7 +88,7 @@ class _NextLessonConstantItemState extends State<NextLessonConstantItem> {
                                 ),
                               );
                             },
-                            child: const Text("تسجيل الحضور")),
+                            child: const Text("تسجيل الحضور",style: TextStyle(color: Colors.white))),
                       ),
                     )
                   : Container(),

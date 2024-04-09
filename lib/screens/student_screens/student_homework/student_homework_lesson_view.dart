@@ -184,7 +184,7 @@ class _StudentHomeworkLessonViewState extends State<StudentHomeworkLessonView> {
                           onPressed: () {
                             controller.sendTask(context: context, sessionId: widget.session.id!,);
                           },
-                          child: const Text("حفظ")),
+                          child: const Text("حفظ",style: TextStyle(color: Colors.white))),
                     ),
                   ),
                 ),

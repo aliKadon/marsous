@@ -280,7 +280,7 @@ class _EditingProfileStudentViewState extends State<EditingProfileStudentView> {
                             borderRadius: BorderRadius.circular(25.r)),
                       ),
                       onPressed: () {},
-                      child: const Text("حفظ")),
+                      child: const Text("حفظ",style: TextStyle(color: Colors.white))),
                 ),
               ),
             ),

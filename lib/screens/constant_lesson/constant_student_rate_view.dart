@@ -64,7 +64,7 @@ class ConstantStudentRateView extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("تأكيد")),
+                    child: const Text("تأكيد",style: TextStyle(color: Colors.white))),
               ),
             )
           ],

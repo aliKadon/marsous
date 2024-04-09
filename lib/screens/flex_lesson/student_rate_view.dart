@@ -74,7 +74,7 @@ class _StudentRateViewState extends State<StudentRateView> {
                           child: Icon(Icons.add, size: 15.h),
                         ),
                         SizedBox(width: 3.w),
-                        Text("واجب")
+                        Text("واجب",style: TextStyle(color: Colors.white))
                       ],
                     ),
                   ),
@@ -125,7 +125,7 @@ class _StudentRateViewState extends State<StudentRateView> {
                           borderRadius: BorderRadius.circular(25.r)),
                     ),
                     onPressed: () {},
-                    child: const Text("تأكيد")),
+                    child: const Text("تأكيد",style: TextStyle(color: Colors.white))),
               ),
             )
           ],

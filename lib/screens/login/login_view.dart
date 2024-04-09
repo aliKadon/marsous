@@ -195,7 +195,7 @@ class _LoginViewState extends State<LoginView> {
                                 onPressed: () {
                                   _loginGetxController.login(context: context);
                                 },
-                                child: const Text("تسجيل الدخول")),
+                                child: const Text("تسجيل الدخول",style: TextStyle(color: Colors.white),)),
                           ),
                         ),
                         SizedBox(height: 16.h),

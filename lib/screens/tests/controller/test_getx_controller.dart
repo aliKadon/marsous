@@ -214,7 +214,7 @@ class TestGetxController extends GetxController {
                                     borderRadius: BorderRadius.circular(25.r)),
                               ),
                               onPressed: () {},
-                              child: const Text("عرض النتائج")),
+                              child: const Text("عرض النتائج",style: TextStyle(color: Colors.white))),
                         ),
                       ),
                     ],
@@ -340,7 +340,7 @@ class TestGetxController extends GetxController {
                                     context: context,
                                     submitGradeList: submitGradeList);
                               },
-                              child: const Text("تأكيد")),
+                              child: const Text("تأكيد",style: TextStyle(color: Colors.white))),
                         ),
                       ),
                     ],

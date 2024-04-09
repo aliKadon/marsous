@@ -208,7 +208,7 @@ class _StudentHomeViewState extends State<StudentHomeView> {
                                   ),
                                 );
                               },
-                              child: const Text("تواصل معنا"))
+                              child: const Text("تواصل معنا",style: TextStyle(color: Colors.white)))
                         ],
                       ),
                     )

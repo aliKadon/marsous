@@ -255,7 +255,7 @@ class _SettingViewState extends State<SettingView> {
                             onPressed: () {
                               _profileGetXController.changePassword(context: context);
                             },
-                            child: const Text("تأكيد"),
+                            child: const Text("تأكيد",style: TextStyle(color: Colors.white)),
                           ),
                         ),
                       ),

@@ -115,7 +115,7 @@ class ForgetPasswordView extends StatelessWidget {
                               onPressed: () {
 
                               },
-                              child: const Text("التالي")),
+                              child: const Text("التالي",style: TextStyle(color: Colors.white))),
                         ),
                       )
                     ],

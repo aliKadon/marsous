@@ -156,7 +156,7 @@ class ContactUsGetxController extends GetxController with Helpers {
                                     context: context,
                                     submitMessageModel: submitMessageModel);
                               },
-                              child: const Text("تأكيد")),
+                              child: const Text("تأكيد",style: TextStyle(color: Colors.white))),
                         ),
                       ),
                     ],

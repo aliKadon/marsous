@@ -107,7 +107,7 @@ class _ConstantRecordingAttendaceViewState extends State<ConstantRecordingAttend
                     onPressed: () {
 
                     },
-                    child: const Text("تأكيد")),
+                    child: const Text("تأكيد",style: TextStyle(color: Colors.white))),
               ),
             )
           ],

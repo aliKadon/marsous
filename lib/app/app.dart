@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
         // print('isArabic : $isArabic');
         // print(_profileGetxController.language);
 
-        return MaterialApp(
+        return GetMaterialApp(
             // navigatorKey: navigatorKey,
 
-            locale: const Locale('ar'),
+            locale: const Locale('ar','AR'),
             // locale: DevicePreview.locale(context),
             // locale: provider.locale,
             builder: DevicePreview.appBuilder,

@@ -223,7 +223,7 @@ class _ChooseAccountViewState extends State<ChooseAccountView> with Helpers {
                                       }
                                     }
                                   },
-                                  child: const Text("التالي")),
+                                  child: const Text("التالي",style: TextStyle(color: Colors.white))),
                             ),
                           ),
                           SizedBox(height: 16.h),

@@ -454,7 +454,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                                                             controller.showSheetContactUs(context,submitMessageModel);
                                                           },
                                                           child:
-                                                              const Text("ارسال")),
+                                                              const Text("ارسال",style: TextStyle(color: Colors.white))),
                                                     ),
                                                   ),
                                                 ],

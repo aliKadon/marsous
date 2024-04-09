@@ -188,7 +188,7 @@ class _StudentHomeworkViewState extends State<StudentHomeworkView> {
                                     ),
                                   );
                                 },
-                                child: Text("تواصل معنا"))
+                                child: Text("تواصل معنا",style: TextStyle(color: Colors.white)))
                           ],
                         ),
                       )

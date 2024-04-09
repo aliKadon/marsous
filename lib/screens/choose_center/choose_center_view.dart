@@ -203,7 +203,7 @@ class _ChooseCenterViewState extends State<ChooseCenterView> with Helpers{
                                       });
                                     }
                                   },
-                                  child: const Text("التالي")),
+                                  child: const Text("التالي",style: TextStyle(color: Colors.white))),
                             ),
                           ),
                           SizedBox(height: 16.h),

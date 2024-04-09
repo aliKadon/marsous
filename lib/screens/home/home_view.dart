@@ -208,7 +208,7 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                 );
                               },
-                              child: Text("تواصل معنا"))
+                              child: Text("تواصل معنا",style: TextStyle(color: Colors.white)))
                         ],
                       ),
                     )

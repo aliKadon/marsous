@@ -112,7 +112,7 @@ class _RecordingAttendanceViewState extends State<RecordingAttendanceView> {
                           borderRadius: BorderRadius.circular(25.r)),
                     ),
                     onPressed: () {},
-                    child: const Text("تأكيد")),
+                    child: const Text("تأكيد",style: TextStyle(color: Colors.white))),
               ),
             )
           ],

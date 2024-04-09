@@ -76,19 +76,19 @@ class _MainDrawerState extends State<MainDrawer> with Helpers {
                           child: AppSharedData.userInfoModel == null
                               ? Image.asset(
                                   ImageAssets.accountProfileImage,
-                                  height: 60.h,
-                                  width: 60.h,
+                                  height: 50.h,
+                                  width: 50.h,
                                 )
                               : Image.network(
                                   AppSharedData.userInfoModel!.image!,
-                                  height: 60.h,
-                                  width: 60.h,
+                                  height: 50.h,
+                                  width: 50.h,
                                   fit: BoxFit.fill,
                                   errorBuilder: (context, error, stackTrace) {
                                     return Image.asset(
                                       ImageAssets.accountProfileImage,
-                                      height: 60.h,
-                                      width: 60.h,
+                                      height: 50.h,
+                                      width: 50.h,
                                     );
                                   },
                                 ),
