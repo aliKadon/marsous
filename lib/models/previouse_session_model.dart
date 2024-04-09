@@ -11,11 +11,12 @@ class PreviousSessionModel {
 
   factory PreviousSessionModel.fromJson(Map<String, dynamic> json) =>
       PreviousSessionModel(
-        old: List<SessionModel>.from(
-          json["old"].map(
-            (x) => SessionModel.fromJson(x),
+          old: List<SessionModel>.from(
+            json["old"].map(
+              (x) => SessionModel.fromJson(x),
+            ),
           ),
-        ),
-        upcomming: SessionModel.fromJson(json["upcomming"])
-      );
+          upcomming: json["upcomming"] == null
+              ? null
+              : SessionModel.fromJson(json["upcomming"]));
 }

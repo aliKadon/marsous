@@ -2,20 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/session_model.dart';
-import '../../../resources/assets_manager.dart';
 import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 
 class PreviousLessonDetailsStudentView extends StatefulWidget {
   final String episodeTitle;
   final SessionModel sessionModel;
-  PreviousLessonDetailsStudentView({required this.episodeTitle,required this.sessionModel});
+
+  PreviousLessonDetailsStudentView(
+      {required this.episodeTitle, required this.sessionModel});
 
   @override
-  State<PreviousLessonDetailsStudentView> createState() => _PreviousLessonDetailsStudentViewState();
+  State<PreviousLessonDetailsStudentView> createState() =>
+      _PreviousLessonDetailsStudentViewState();
 }
 
-class _PreviousLessonDetailsStudentViewState extends State<PreviousLessonDetailsStudentView> {
+class _PreviousLessonDetailsStudentViewState
+    extends State<PreviousLessonDetailsStudentView> {
+  bool getLessonReviewed() {
+    if (widget.sessionModel.lessonMemorize!.isEmpty &&
+        widget.sessionModel.lessonTajweed!.isEmpty &&
+        widget.sessionModel.lessonFarReview!.isEmpty &&
+        widget.sessionModel.lessonNearReview!.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +43,6 @@ class _PreviousLessonDetailsStudentViewState extends State<PreviousLessonDetails
         child: SingleChildScrollView(
           child: Column(
             children: [
-
               SizedBox(
                 height: 15.h,
               ),
@@ -41,58 +54,79 @@ class _PreviousLessonDetailsStudentViewState extends State<PreviousLessonDetails
                     Radius.circular(15.r),
                   ),
                 ),
-                child: Column(
-                  children: [
-                    widget.sessionModel.lessonMemorize!.isNotEmpty ? Column(
-                      children: [
-                        lessonItem(
-                            title: "${widget.sessionModel.lessonMemorize}",
-                            // note: "لا يوجد ملاحظات",
-                            type: "التسميع"),
-                        Divider(
-                          color: Colors.grey.withOpacity(0.3),
-                          thickness: 1,
-                        ),
-                      ],
-                    ): Container() ,
-                    widget.sessionModel.lessonNearReview!.isNotEmpty ? Column(
-                      children: [
-                        lessonItem(
-                            title: "${widget.sessionModel.lessonNearReview}",
-                            // note: "لا يوجد ملاحظات",
-                            type: "المراجعة القريبة"),
-                        Divider(
-                          color: Colors.grey.withOpacity(0.3),
-                          thickness: 1,
-                        ),
-                      ],
-                    ): Container() ,
-                    widget.sessionModel.lessonFarReview!.isNotEmpty ? Column(
-                      children: [
-                        lessonItem(
-                            title: "${widget.sessionModel.lessonFarReview}",
-                            // note: "لا يوجد ملاحظات",
-                            type: "المراجعة البعيدة"),
-                        Divider(
-                          color: Colors.grey.withOpacity(0.3),
-                          thickness: 1,
-                        ),
-                      ],
-                    ): Container() ,
-                    widget.sessionModel.lessonTajweed!.isNotEmpty ? Column(
-                      children: [
-                        lessonItem(
-                            title: "${widget.sessionModel.lessonTajweed}",
-                            // note: "لا يوجد ملاحظات",
-                            type: "التجويد"),
-                        Divider(
-                          color: Colors.grey.withOpacity(0.3),
-                          thickness: 1,
-                        ),
-                      ],
-                    ): Container() ,
-                  ],
-                ),
+                child: getLessonReviewed()
+                    ? Column(
+                        children: [
+                          widget.sessionModel.lessonMemorize!.isNotEmpty
+                              ? Column(
+                                  children: [
+                                    lessonItem(
+                                        title:
+                                            "${widget.sessionModel.lessonMemorize}",
+                                        // note: "لا يوجد ملاحظات",
+                                        type: "التسميع"),
+                                    Divider(
+                                      color: Colors.grey.withOpacity(0.3),
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          widget.sessionModel.lessonNearReview!.isNotEmpty
+                              ? Column(
+                                  children: [
+                                    lessonItem(
+                                        title:
+                                            "${widget.sessionModel.lessonNearReview}",
+                                        // note: "لا يوجد ملاحظات",
+                                        type: "المراجعة القريبة"),
+                                    Divider(
+                                      color: Colors.grey.withOpacity(0.3),
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          widget.sessionModel.lessonFarReview!.isNotEmpty
+                              ? Column(
+                                  children: [
+                                    lessonItem(
+                                        title:
+                                            "${widget.sessionModel.lessonFarReview}",
+                                        // note: "لا يوجد ملاحظات",
+                                        type: "المراجعة البعيدة"),
+                                    Divider(
+                                      color: Colors.grey.withOpacity(0.3),
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                          widget.sessionModel.lessonTajweed!.isNotEmpty
+                              ? Column(
+                                  children: [
+                                    lessonItem(
+                                        title:
+                                            "${widget.sessionModel.lessonTajweed}",
+                                        // note: "لا يوجد ملاحظات",
+                                        type: "التجويد"),
+                                    Divider(
+                                      color: Colors.grey.withOpacity(0.3),
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                )
+                              : Container(),
+                        ],
+                      )
+                    :  Expanded(
+                        child: Center(
+                        child: Text("لا يوجد تقييمات حالياً.",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: FontSize.s16,
+                                fontWeight: FontWeight.w700)),
+                      )),
               ),
             ],
           ),

@@ -7,10 +7,8 @@ import 'package:marsous/app/utils/helpers.dart';
 import 'package:marsous/data/api/controllers/auth_api_controller.dart';
 import 'package:marsous/data/api/controllers/user_details_api_controller.dart';
 import 'package:marsous/models/api_response.dart';
-import 'package:marsous/preferences/shared_pref_controller.dart';
 import 'package:marsous/screens/choose_account/choose_account_view.dart';
 import 'package:marsous/screens/choose_center/choose_center_view.dart';
-import 'package:marsous/screens/login/controller/profile_getx_controller.dart';
 import 'package:marsous/screens/student_screens/main_student_rout/main_student_rout.dart';
 
 import '../../main_rout/main_rout.dart';

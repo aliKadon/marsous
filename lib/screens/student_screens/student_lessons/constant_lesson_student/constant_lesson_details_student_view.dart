@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:marsous/models/session_model.dart';
 import 'package:marsous/screens/student_screens/previous_lesson_details_student/previous_lesson_details_student_view.dart';
-import 'package:marsous/screens/student_screens/student_homework/student_homework_lesson_view.dart';
 import 'package:marsous/screens/student_screens/student_lessons/controller/student_lesson_getx_controller.dart';
+import 'package:marsous/widgets/student_widget/student_next_lesson_constant_item.dart';
 
-import '../../../../resources/assets_manager.dart';
 import '../../../../resources/color_manager.dart';
 import '../../../../resources/font_manager.dart';
 import '../../../../widgets/student_widget/student_previous_lesson_item.dart';
@@ -28,7 +26,7 @@ class _ConstantLessonDetailsStudentViewState
     extends State<ConstantLessonDetailsStudentView> {
   //controller
   final StudentLessonGetXController _studentLessonGetXController =
-      Get.put(StudentLessonGetXController());
+  Get.put(StudentLessonGetXController());
 
   // final StudentHomeGetXController _studentHomeGetXController = Get.put(StudentHomeGetXController());
 
@@ -40,7 +38,7 @@ class _ConstantLessonDetailsStudentViewState
   void scrollListener() {
     print('you in listner');
     if (_scrollController.offset >=
-            _scrollController.position.maxScrollExtent &&
+        _scrollController.position.maxScrollExtent &&
         !_scrollController.position.outOfRange) {
       print("reached the bottom");
       print('page1 : ${page + 1}');
@@ -52,6 +50,8 @@ class _ConstantLessonDetailsStudentViewState
     }
   }
 
+  int isSelected = 0;
+
   @override
   void initState() {
     _studentLessonGetXController.getPreviousLessons(
@@ -61,8 +61,8 @@ class _ConstantLessonDetailsStudentViewState
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<StudentLessonGetXController>(
-      builder: (controller) => Scaffold(
+    return GetBuilder<StudentLessonGetXController>(builder: (controller) {
+      return Scaffold(
         appBar: AppBar(
           title: Row(
             children: [
@@ -78,179 +78,266 @@ class _ConstantLessonDetailsStudentViewState
         ),
         body: controller.previousLessons == null
             ? const Center(
-                child: CircularProgressIndicator(),
-              )
+          child: CircularProgressIndicator(),
+        )
             : Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(10.w),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.r)),
-                      child: Padding(
-                        padding: EdgeInsets.all(10.w),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            Row(
-                              children: [
-                                Image.asset(
-                                  ImageAssets.aboutUsStar,
-                                  height: 20.h,
-                                ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                                Text(
-                                  "مقرر حلقه اليوم",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: FontSize.s15,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                Spacer(),
-                                Text(
-                                  "${DateFormat('yMMMMEEEEd', 'ar').format(DateTime.parse(controller.previousLessons!.upcomming!.date!))}",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              thickness: 2.w,
-                            ),
-                            controller.previousLessons!.upcomming!
-                                    .lessonMemorize!.isEmpty
-                                ? Container()
-                                : lessonDetailsItem(
-                                    title: "التسميع",
-                                    sora:
-                                        "${controller.previousLessons?.upcomming?.lessonMemorize}"),
-                            controller.previousLessons!.upcomming!
-                                    .lessonFarReview!.isEmpty
-                                ? Container()
-                                : lessonDetailsItem(
-                                    title: "المراجعه البعيده",
-                                    sora:
-                                        "${controller.previousLessons!.upcomming!.lessonFarReview}"),
-                            controller.previousLessons!.upcomming!
-                                    .lessonNearReview!.isEmpty
-                                ? Container()
-                                : lessonDetailsItem(
-                                    title: "المراجعة القريبة ",
-                                    sora:
-                                        "${controller.previousLessons!.upcomming!.lessonNearReview}"),
-                            controller.previousLessons!.upcomming!
-                                    .lessonTajweed!.isEmpty
-                                ? Container()
-                                : lessonDetailsItem(
-                                    title: "التجويد",
-                                    sora:
-                                        "${controller.previousLessons!.upcomming!.lessonTajweed}"),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                            SizedBox(
-                              width: 300.w,
-                              child: ElevatedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStatePropertyAll(Colors.white),
-                                    shape: MaterialStatePropertyAll(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(15.r),
-                                          ),
-                                          side: BorderSide(
-                                              color: ColorManager.primary)),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            StudentHomeworkLessonView(
-                                                session: controller
-                                                    .previousLessons!
-                                                    .upcomming!),
-                                      ),
-                                    );
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10.w),
-                                    child: Text(
-                                      "عرض الواجب",
-                                      style: TextStyle(
-                                          color: ColorManager.primary),
-                                    ),
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 15.h,
-                            ),
-                          ],
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isSelected = 0;
+                    });
+                  },
+                  child: Container(
+                    height: 45.h,
+                    width: 175.w,
+                    decoration: BoxDecoration(
+                        color: isSelected == 0
+                            ? ColorManager.primary
+                            : Colors.grey.withOpacity(0.1),
+                        border: Border.all(
+                          color: isSelected == 0
+                              ? ColorManager.primary
+                              : Colors.grey.withOpacity(0.1),
                         ),
-                      ),
-                    ),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Center(
+                        child: Text(
+                          "الجلسات القادمة",
+                          style: TextStyle(
+                              color: isSelected == 0
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: FontSize.s14),
+                        )),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: 15.w, left: 15.w, top: 20.w),
-                    child: Row(
-                      children: [
-                        Text(
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isSelected = 1;
+                    });
+                  },
+                  child: Container(
+                    height: 45.h,
+                    width: 175.w,
+                    decoration: BoxDecoration(
+                        color: isSelected == 1
+                            ? ColorManager.primary
+                            : Colors.grey.withOpacity(0.1),
+                        border: Border.all(
+                          color: isSelected == 1
+                              ? ColorManager.primary
+                              : Colors.grey.withOpacity(0.1),
+                        ),
+                        borderRadius: BorderRadius.circular(10.r)),
+                    child: Center(
+                        child: Text(
                           "الجلسات السابقة",
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: FontSize.s16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Spacer(),
-                        Image.asset(
-                          IconsAssets.homeworkIcon,
-                          height: 23.h,
-                          color: Colors.black,
-                        )
-                      ],
-                    ),
+                              color: isSelected == 1
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontWeight: FontWeight.w700,
+                              fontSize: FontSize.s14),
+                        )),
                   ),
-                  Expanded(
-                      child: ListView.builder(
-                    controller: _scrollController,
-                    physics: const BouncingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: controller.previousLessons!.old!.length,
-                    itemBuilder: (context, index) {
-                      Get.put<SessionModel>(
-                          controller.previousLessons!.old![index],
-                          tag: "${controller.previousLessons!.old![index].id}");
-                      return GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    PreviousLessonDetailsStudentView(
-                                      sessionModel: controller.previousLessons!.old![index],
-                                        episodeTitle:
-                                            "تقييم جلسة ${DateFormat('yMMMMEEEEd', 'ar').format(DateTime.parse(controller.previousLessons!.old![index].date!))} "),
-                              ),
-                            );
-                          },
-                          child: StudentPreviousLessonItem(
-                            sessionModel:
-                                controller.previousLessons!.old![index],
-                            tag:
-                                "${controller.previousLessons!.old![index].id}",
-                          ));
-                    },
-                  ))
-                ],
+                ),
+              ],
+            ),
+            // controller.previousLessons!.upcomming == null
+            //     ? Container()
+            //     : Padding(
+            //         padding: EdgeInsets.all(10.w),
+            //         child: Card(
+            //           shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(20.r)),
+            //           child: Padding(
+            //             padding: EdgeInsets.all(10.w),
+            //             child: Column(
+            //               children: [
+            //                 SizedBox(
+            //                   height: 15.h,
+            //                 ),
+            //                 Row(
+            //                   children: [
+            //                     Image.asset(
+            //                       ImageAssets.aboutUsStar,
+            //                       height: 20.h,
+            //                     ),
+            //                     SizedBox(
+            //                       width: 5.w,
+            //                     ),
+            //                     Text(
+            //                       "مقرر حلقه اليوم",
+            //                       style: TextStyle(
+            //                           color: Colors.black,
+            //                           fontSize: FontSize.s15,
+            //                           fontWeight: FontWeight.w600),
+            //                     ),
+            //                     Spacer(),
+            //                     Text(
+            //                       "${controller.previousLessons!.upcomming == null ? 0 : DateFormat('yMMMMEEEEd', 'ar').format(DateTime.parse(controller.previousLessons!.upcomming!.date!))}",
+            //                       style: const TextStyle(
+            //                         color: Colors.grey,
+            //                       ),
+            //                     ),
+            //                   ],
+            //                 ),
+            //                 Divider(
+            //                   thickness: 2.w,
+            //                 ),
+            //                 controller.previousLessons!.upcomming!
+            //                         .lessonMemorize!.isEmpty
+            //                     ? Container()
+            //                     : lessonDetailsItem(
+            //                         title: "التسميع",
+            //                         sora:
+            //                             "${controller.previousLessons?.upcomming?.lessonMemorize}"),
+            //                 controller.previousLessons!.upcomming!
+            //                         .lessonFarReview!.isEmpty
+            //                     ? Container()
+            //                     : lessonDetailsItem(
+            //                         title: "المراجعه البعيده",
+            //                         sora:
+            //                             "${controller.previousLessons!.upcomming!.lessonFarReview}"),
+            //                 controller.previousLessons!.upcomming!
+            //                         .lessonNearReview!.isEmpty
+            //                     ? Container()
+            //                     : lessonDetailsItem(
+            //                         title: "المراجعة القريبة ",
+            //                         sora:
+            //                             "${controller.previousLessons!.upcomming!.lessonNearReview}"),
+            //                 controller.previousLessons!.upcomming!
+            //                         .lessonTajweed!.isEmpty
+            //                     ? Container()
+            //                     : lessonDetailsItem(
+            //                         title: "التجويد",
+            //                         sora:
+            //                             "${controller.previousLessons!.upcomming!.lessonTajweed}"),
+            //                 SizedBox(
+            //                   height: 15.h,
+            //                 ),
+            //                 SizedBox(
+            //                   width: 300.w,
+            //                   child: ElevatedButton(
+            //                       style: ButtonStyle(
+            //                         backgroundColor:
+            //                             const MaterialStatePropertyAll(
+            //                                 Colors.white),
+            //                         shape: MaterialStatePropertyAll(
+            //                           RoundedRectangleBorder(
+            //                               borderRadius: BorderRadius.all(
+            //                                 Radius.circular(15.r),
+            //                               ),
+            //                               side: BorderSide(
+            //                                   color:
+            //                                       ColorManager.primary)),
+            //                         ),
+            //                       ),
+            //                       onPressed: () {
+            //                         Navigator.of(context).push(
+            //                           MaterialPageRoute(
+            //                             builder: (context) =>
+            //                                 StudentHomeworkLessonView(
+            //                                     session: controller
+            //                                         .previousLessons!
+            //                                         .upcomming!),
+            //                           ),
+            //                         );
+            //                       },
+            //                       child: Padding(
+            //                         padding: EdgeInsets.all(10.w),
+            //                         child: Text(
+            //                           "عرض الواجب",
+            //                           style: TextStyle(
+            //                               color: ColorManager.primary),
+            //                         ),
+            //                       )),
+            //                 ),
+            //                 SizedBox(
+            //                   height: 15.h,
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            isSelected == 0 &&
+                controller.previousLessons!.upcomming == null
+                ? Expanded(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("لا يوجد حلقات قادمة",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: FontSize.s16,
+                        color: Colors.black)),
               ),
-      ),
-    );
+            )
+                : isSelected == 1 &&
+                controller.previousLessons!.old!.isEmpty
+                ? Expanded(
+              child: Align(
+                alignment: Alignment.center,
+                child: Text("لا يوجد حلقات سابقة",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: FontSize.s16,
+                        color: Colors.black)),
+              ),
+            )
+                : Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: isSelected == 1
+                      ? controller.previousLessons!.old!.length
+                      : 1,
+                  itemBuilder: (context, index) {
+                    Get.put<SessionModel>(
+                        isSelected == 1
+                            ? controller
+                            .previousLessons!.old![index]
+                            : controller
+                            .previousLessons!.upcomming!,
+                        tag:
+                        "${isSelected == 1 ? controller.previousLessons!
+                            .old![index].id : controller.previousLessons!
+                            .upcomming?.id}");
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                PreviousLessonDetailsStudentView(
+                                    episodeTitle: "${controller.previousLessons!
+                                        .old![index].courseName}",
+                                    sessionModel: controller.previousLessons!
+                                        .old![index]),));
+                        },
+                        child: isSelected == 1
+                            ? StudentPreviousLessonItem(
+                          sessionModel: controller
+                              .previousLessons!.old![index],
+                          tag:
+                          "${controller.previousLessons!.old![index].id}",
+                        )
+                            : StudentNextLessonConstantItem(
+                          sessionModel: controller
+                              .previousLessons!.upcomming!,
+                        ));
+                  },
+                ))
+          ],
+        ),
+      );
+    });
   }
 
   Container lessonDetailsItem({
