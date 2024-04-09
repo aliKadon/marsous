@@ -32,7 +32,7 @@ jobs:
         run: flutter pub get
 
       - name: Build IPA
-          run: flutter build ipa --no-codesign
+        run: flutter build ipa --no-codesign
       - name: Compress Archives and IPAs
         run: |
           cd build
