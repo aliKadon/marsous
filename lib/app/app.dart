@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:marsous/screens/home/home_view.dart';
 import 'package:marsous/screens/splash/splash_view.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import '../resources/theme_manager.dart';
 

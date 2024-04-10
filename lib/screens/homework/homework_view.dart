@@ -47,7 +47,6 @@ class _HomeWorkViewState extends State<HomeWorkView> {
 
   @override
   Widget build(BuildContext context) {
-    print("image for tutor : ${AppSharedData.userInfoModel?.image}");
     return Scaffold(
       key: _scaffoldKey,
       endDrawer: MainDrawer(isStudent: false),
@@ -186,28 +185,37 @@ class _HomeWorkViewState extends State<HomeWorkView> {
             ),
           ),
           GetBuilder<HomeGetXController>(
-            builder: (controller) => Expanded(
-              child: controller.homeWorkSessions.length == 0
-                  ? Center(
-                      child: Text(
-                      "لا يوجد واجبات حاليا",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: FontSize.s16,
-                          fontWeight: FontWeight.w700),
-                    ))
-                  : ListView.builder(
-                      controller: _scrollController,
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: controller.homeWorkSessions.length,
-                      itemBuilder: (context, index) {
-                        return HomeworkItem(
-                          sessionModel: controller.homeWorkSessions[index],
-                        );
-                      },
-                    ),
-            ),
+            builder: (controller) => controller.homeWorkSessions.isEmpty
+                  ? Expanded(
+                    child: Center(
+                        child: Text(
+                        "لا يوجد واجبات حاليا",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: FontSize.s16,
+                            fontWeight: FontWeight.w700),
+                      )),
+                  )
+                  :
+              // Text("All done"),
+              Container(
+                // height: 250.h,
+                // width: 200.w,
+                child: ListView.builder(
+                  controller: _scrollController,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: controller.homeWorkSessions.length,
+                  // itemCount: controller.courses.length,
+                  itemBuilder: (context, index) {
+                    return
+                      HomeworkItem(
+                      sessionModel: controller.homeWorkSessions[index],
+                    );
+                  },
+                ),
+              ),
+
           )
         ],
       ),
