@@ -213,6 +213,7 @@ class _ChooseAccountViewState extends State<ChooseAccountView> with Helpers {
                                       } else {
                                         Timer(2.seconds, () {
                                           Navigator.of(context).pop();
+
                                           Navigator.of(context).pushReplacement(
                                             MaterialPageRoute(
                                               builder: (context) =>
